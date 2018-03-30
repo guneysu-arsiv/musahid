@@ -4,6 +4,9 @@ sudo: false
 
 language: python
 
+matrix:
+  fast_finish: true
+
 python:
   - 2.7
   - pypy2.7-5.8.0
@@ -36,3 +39,11 @@ install:
     - ./nodeps/bin/python -VV
     - ./nodeps/bin/python setup.py install
     - curl-config --version; pip freeze
+
+script:
+  - python setup.py bdist_wheel
+  - echo "OK"    
+
+
+after_success:
+  - echo "SUCCESS"
